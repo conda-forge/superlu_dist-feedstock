@@ -1,6 +1,6 @@
 {% set version = "6.1.1" %}
 
-{% set mpi = 'mpich' %}
+{% set mpi = mpi or 'mpich' %}
 
 package:
   name: superlu_dist
