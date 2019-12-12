@@ -13,8 +13,8 @@ for shared in OFF ON; do
 
     # build & install once for static
     cmake .. \
-        -DCMAKE_AR="${AR}" \
-        -DCMAKE_RANLIB="${RANLIB}" \
+        -DCMAKE_AR=${AR} \
+        -DCMAKE_RANLIB=${RANLIB} \
         -DCMAKE_INSTALL_PREFIX="${PREFIX}" \
         -DCMAKE_INSTALL_LIBDIR="${PREFIX}/lib" \
         -DCMAKE_C_FLAGS="${CFLAGS}" \
