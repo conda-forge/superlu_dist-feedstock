@@ -17,6 +17,7 @@ for shared in OFF ON; do
         -DCMAKE_INSTALL_LIBDIR="${PREFIX}/lib" \
         -DCMAKE_C_FLAGS="${CFLAGS}" \
         -DCMAKE_C_COMPILER=mpicc \
+        -DCMAKE_CXX_COMPILER=mpic++ \
         -DCMAKE_BUILD_TYPE=RELEASE \
         -DTPL_PARMETIS_INCLUDE_DIRS="${PREFIX}/include" \
         -DTPL_PARMETIS_LIBRARIES="${PREFIX}/lib/libparmetis${SHLIB_EXT};${PREFIX}/lib/libmetis${SHLIB_EXT}" \
