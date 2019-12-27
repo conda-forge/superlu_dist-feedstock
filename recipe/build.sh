@@ -2,6 +2,8 @@
 
 export CFLAGS="$CFLAGS -std=c99 -fPIC"
 
+ln -s $RANLIB $BUILD_PREFIX/bin/ranlib
+
 WORK=$PWD
 # run full build & install twice, once for static, once for shared
 # because it's the cmake way
