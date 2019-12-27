@@ -15,12 +15,9 @@ build:
 
 requirements:
   build:
-    - {{ compiler('c') }}  # [linux]
-    - {{ compiler('cxx') }}  # [linux]
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
     - {{ compiler('fortran') }}
-    - clang_osx-64  # [osx]
-    - clangxx_osx-64  # [osx]
-    - ld64 409.12 h3c32e8a_4   # [osx]
     - cmake
     - make
     - llvm-openmp  # [osx]
