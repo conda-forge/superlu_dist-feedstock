@@ -2,12 +2,7 @@
 
 export CFLAGS="$CFLAGS -std=c99 -fPIC"
 
-ln -s $RANLIB $BUILD_PREFIX/bin/ranlib
-TOOLS_DIR=$(dirname $($FC --print-libgcc-file-name))
-if [[ ! -f "$TOOLS_DIR/ld" ]]; then
-  ln -sf $LD $TOOLS_DIR/ld
-  ln -sf $LD $BUILD_PREFIX/bin/ld
-fi
+export NEXT_ROOT=$CONDA_BUILD_SYSROOT
 
 WORK=$PWD
 # run full build & install twice, once for static, once for shared
