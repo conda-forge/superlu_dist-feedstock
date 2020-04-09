@@ -29,8 +29,15 @@ for shared in OFF ON; do
         -DBUILD_SHARED_LIBS=$shared
 
     make -j${CPU_COUNT}
+
     # ctest seems to have weird PATH assumptions
     export PATH=$PWD/EXAMPLE:$PWD/TEST:$PATH
-    ctest
+    # avoid heavy oversubscription of resources: already 1-2 MPI ranks (processes)
+    export OMP_NUM_THREADS=1
+    export KMP_NUM_THREADS=${OMP_NUM_THREADS}
+    export MKL_NUM_THREADS=${OMP_NUM_THREADS}
+    export CTEST_REGEX="-R (pdtest_1x1|pdtest_1x2|pdtest_2x1|pddrive)"
+    ctest ${CTEST_REGEX}
+
     make install
 done
