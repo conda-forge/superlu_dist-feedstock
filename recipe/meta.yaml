@@ -1,4 +1,4 @@
-{% set version = "6.2.0" %}
+{% set version = "6.3.0" %}
 
 package:
   name: superlu_dist
@@ -7,11 +7,11 @@ package:
 source:
   fn: superlu-{{ version }}.tar.gz
   url: http://crd-legacy.lbl.gov/~xiaoye/SuperLU/superlu_dist_{{ version }}.tar.gz
-  sha256: 7cdb5ae0ba29f12381d62da78d7fdcefa1a2d32c4a6b287c1d4c272615e6d5fa
+  sha256: 293cd22b3de83934bb0275fa8046617f88b6e8c0892312056fe14a66429b071f
 
 build:
-  number: 2
-  skip: True  # [win]
+  number: 0
+  skip: true  # [win]
 
 requirements:
   build:
@@ -46,15 +46,15 @@ test:
     - test -f ${PREFIX}/lib/libsuperlu_dist.so     # [linux]
 
 about:
-    home: http://crd-legacy.lbl.gov/~xiaoye/SuperLU/
-    license: BSD-3-Clause
-    license_file: License.txt
-    summary: |
-      Supernodal LU, solvers for large, sparse, nonsymmetric systems of linear
-      equations. SuperLU_DIST is a parallel extension to the serial SuperLU library.
+  home: http://crd-legacy.lbl.gov/~xiaoye/SuperLU/
+  license: BSD-3-Clause
+  license_file: License.txt
+  summary: |
+    Supernodal LU, solvers for large, sparse, nonsymmetric systems of linear
+    equations. SuperLU_DIST is a parallel extension to the serial SuperLU library.
 
 extra:
-    recipe-maintainers:
-      - minrk
-      - davidbrochart
-      - SylvainCorlay
+  recipe-maintainers:
+    - minrk
+    - davidbrochart
+    - SylvainCorlay
