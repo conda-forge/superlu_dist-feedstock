@@ -10,32 +10,28 @@ source:
   sha256: 7cdb5ae0ba29f12381d62da78d7fdcefa1a2d32c4a6b287c1d4c272615e6d5fa
 
 build:
-  number: 2
+  number: 3
   skip: True  # [win]
 
 requirements:
   build:
-    - {{ compiler('c') }}  # [linux]
-    - {{ compiler('cxx') }}  # [linux]
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
     - {{ compiler('fortran') }}
-    - clang_osx-64  # [osx]
-    - clangxx_osx-64  # [osx]
-    - ld64 409.12 h3c32e8a_4   # [osx]
+    - llvm-openmp  # [osx]
+    - libgomp      # [linux]
     - cmake
     - make
-    - llvm-openmp  # [osx]
   host:
     - {{ mpi }}
     - metis
     - parmetis
     - libblas
     - liblapack
-    - llvm-openmp  # [osx]
   run:
     # metis and parmetis are missing a run_exports section
     - metis
     - parmetis
-    - llvm-openmp  # [osx]
     - {{ pin_compatible('metis', max_pin='x.x') }}
     - {{ pin_compatible('parmetis', max_pin='x.x') }}
 
