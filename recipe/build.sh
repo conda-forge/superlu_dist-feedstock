@@ -2,6 +2,8 @@
 
 export CFLAGS="$CFLAGS -std=c99 -fPIC"
 
+export NEXT_ROOT=$CONDA_BUILD_SYSROOT
+
 WORK=$PWD
 # run full build & install twice, once for static, once for shared
 # because it's the cmake way
