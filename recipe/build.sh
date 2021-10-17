@@ -2,6 +2,12 @@
 
 export CFLAGS="$CFLAGS -std=c99 -fPIC"
 
+if [ "${mpi}" == "openmpi" ]; then
+    export OMPI_MCA_plm=isolated
+    export OMPI_MCA_btl_vader_single_copy_mechanism=none
+    export OMPI_MCA_rmaps_base_oversubscribe=yes
+fi
+
 WORK=$PWD
 # run full build & install twice, once for static, once for shared
 # because it's the cmake way
