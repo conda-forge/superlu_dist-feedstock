@@ -1,7 +1,7 @@
 About superlu_dist
 ==================
 
-Home: http://crd-legacy.lbl.gov/~xiaoye/SuperLU/
+Home: https://portal.nersc.gov/project/sparse/superlu/
 
 Package license: BSD-3-Clause
 
@@ -10,6 +10,10 @@ Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/superlu_dist-fe
 Summary: Supernodal LU, solvers for large, sparse, nonsymmetric systems of linear
 equations. SuperLU_DIST is a parallel extension to the serial SuperLU library.
 
+
+Development: https://github.com/xiaoyeli/superlu_dist/
+
+Documentation: https://portal.nersc.gov/project/sparse/superlu/superlu_dist_code_html/index.html
 
 Current build status
 ====================
@@ -99,10 +103,17 @@ Current build status
                 </a>
               </td>
             </tr><tr>
-              <td>osx_arm64</td>
+              <td>osx_arm64_mpimpich</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=8224&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/superlu_dist-feedstock?branchName=master&jobName=osx&configuration=osx_arm64_" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/superlu_dist-feedstock?branchName=master&jobName=osx&configuration=osx_arm64_mpimpich" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>osx_arm64_mpiopenmpi</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=8224&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/superlu_dist-feedstock?branchName=master&jobName=osx&configuration=osx_arm64_mpiopenmpi" alt="variant">
                 </a>
               </td>
             </tr>

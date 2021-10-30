@@ -19,7 +19,7 @@ WORK=$PWD
 # run full build & install twice, once for static, once for shared
 # because it's the cmake way
 for shared in OFF ON; do
-    cd "$WORK"
+    pushd "$WORK"
     mkdir build_$shared
     cd build_$shared
     # enable_blaslib=OFF so OpenBLAS will be found instead of the built-in BLAS
@@ -38,9 +38,10 @@ for shared in OFF ON; do
         -Denable_blaslib=OFF \
         -Denable_tests=${WITH_TESTS} \
         -Denable_doc=OFF \
-        -DBUILD_SHARED_LIBS=$shared
+        -DBUILD_SHARED_LIBS=$shared \
+        -GNinja
 
-    make -j${CPU_COUNT}
+    cmake --build .
 
     # ctest seems to have weird PATH assumptions
     export PATH=$PWD/EXAMPLE:$PWD/TEST:$PATH
@@ -53,5 +54,6 @@ for shared in OFF ON; do
         ctest ${CTEST_REGEX}
     fi
 
-    make install
+    cmake --install .
+    popd
 done

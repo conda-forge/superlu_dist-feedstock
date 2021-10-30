@@ -6,7 +6,7 @@ package:
 
 source:
   fn: superlu-{{ version }}.tar.gz
-  url: http://crd-legacy.lbl.gov/~xiaoye/SuperLU/superlu_dist_{{ version }}.tar.gz
+  url: https://portal.nersc.gov/project/sparse/superlu/superlu_dist_{{ version }}.tar.gz
   sha256: 713b1993fc5426229c5ccd4be499defb1b040ff9209adb7fe97bbec880dcbc52
 
 build:
@@ -21,7 +21,7 @@ requirements:
     - llvm-openmp  # [osx]
     - libgomp      # [linux]
     - cmake
-    - make
+    - ninja
   host:
     - {{ mpi }}
     - metis
@@ -41,12 +41,14 @@ test:
     - test -f ${PREFIX}/lib/libsuperlu_dist${SHLIB_EXT}
 
 about:
-    home: http://crd-legacy.lbl.gov/~xiaoye/SuperLU/
+    home: https://portal.nersc.gov/project/sparse/superlu/
     license: BSD-3-Clause
     license_file: License.txt
     summary: |
       Supernodal LU, solvers for large, sparse, nonsymmetric systems of linear
       equations. SuperLU_DIST is a parallel extension to the serial SuperLU library.
+    dev_url: https://github.com/xiaoyeli/superlu_dist/
+    doc_url: https://portal.nersc.gov/project/sparse/superlu/superlu_dist_code_html/index.html
 
 extra:
     recipe-maintainers:
