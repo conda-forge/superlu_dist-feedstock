@@ -10,7 +10,7 @@ source:
   sha256: 713b1993fc5426229c5ccd4be499defb1b040ff9209adb7fe97bbec880dcbc52
 
 build:
-  number: 0
+  number: 1
   skip: True  # [win]
 
 requirements:
@@ -22,6 +22,7 @@ requirements:
     - libgomp      # [linux]
     - cmake
     - ninja
+    - {{ mpi }}  # [build_platform != target_platform and mpi == "openmpi"]
   host:
     - {{ mpi }}
     - metis
