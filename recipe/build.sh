@@ -2,8 +2,6 @@
 
 set -ex
 export CFLAGS="$CFLAGS -std=c99 -fPIC"
-# FIXME: CMake can't find MPI on OSX/ARM64
-export LDFLAGS="$LDFLAGS $(mpicxx --showme:link)"
 
 if [ "${mpi}" == "openmpi" ]; then
     export OMPI_MCA_plm=isolated
