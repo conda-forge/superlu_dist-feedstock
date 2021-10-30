@@ -1,4 +1,4 @@
-{% set version = "6.2.0" %}
+{% set version = "6.3.1" %}
 
 package:
   name: superlu_dist
@@ -7,10 +7,10 @@ package:
 source:
   fn: superlu-{{ version }}.tar.gz
   url: http://crd-legacy.lbl.gov/~xiaoye/SuperLU/superlu_dist_{{ version }}.tar.gz
-  sha256: 7cdb5ae0ba29f12381d62da78d7fdcefa1a2d32c4a6b287c1d4c272615e6d5fa
+  sha256: 713b1993fc5426229c5ccd4be499defb1b040ff9209adb7fe97bbec880dcbc52
 
 build:
-  number: 5
+  number: 0
   skip: True  # [win]
 
 requirements:
