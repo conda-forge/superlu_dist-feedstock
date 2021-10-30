@@ -16,6 +16,9 @@ else
     WITH_TESTS=OFF
 fi
 
+# workaround until https://github.com/conda-forge/clang-compiler-activation-feedstock/pull/70 is merged
+CMAKE_ARGS="${CMAKE_ARGS} -DCMAKE_PROGRAM_PATH=${BUILD_PREFIX}/bin;$PREFIX/bin"
+
 WORK=$PWD
 # run full build & install twice, once for static, once for shared
 # because it's the cmake way
