@@ -1,4 +1,4 @@
-{% set version = "6.3.1" %}
+{% set version = "7.0.0" %}
 
 package:
   name: superlu_dist
@@ -7,11 +7,11 @@ package:
 source:
   fn: superlu-{{ version }}.tar.gz
   url: https://portal.nersc.gov/project/sparse/superlu/superlu_dist_{{ version }}.tar.gz
-  sha256: 713b1993fc5426229c5ccd4be499defb1b040ff9209adb7fe97bbec880dcbc52
+  sha256: b6f099f722b64c2dc647b3bc7eb43b74d6e18520e054ef32de02c74c11ecafc4
 
 build:
   number: 0
-  skip: True  # [win]
+  skip: true  # [win]
 
 requirements:
   build:
@@ -41,18 +41,18 @@ test:
     - test -f ${PREFIX}/lib/libsuperlu_dist${SHLIB_EXT}
 
 about:
-    home: https://portal.nersc.gov/project/sparse/superlu/
-    license: BSD-3-Clause
-    license_file: License.txt
-    summary: |
-      Supernodal LU, solvers for large, sparse, nonsymmetric systems of linear
-      equations. SuperLU_DIST is a parallel extension to the serial SuperLU library.
-    dev_url: https://github.com/xiaoyeli/superlu_dist/
-    doc_url: https://portal.nersc.gov/project/sparse/superlu/superlu_dist_code_html/index.html
+  home: https://portal.nersc.gov/project/sparse/superlu/
+  license: BSD-3-Clause
+  license_file: License.txt
+  summary: |
+    Supernodal LU, solvers for large, sparse, nonsymmetric systems of linear
+    equations. SuperLU_DIST is a parallel extension to the serial SuperLU library.
+  dev_url: https://github.com/xiaoyeli/superlu_dist/
+  doc_url: https://portal.nersc.gov/project/sparse/superlu/superlu_dist_code_html/index.html
 
 extra:
-    recipe-maintainers:
-      - awvwgk
-      - minrk
-      - davidbrochart
-      - SylvainCorlay
+  recipe-maintainers:
+    - awvwgk
+    - minrk
+    - davidbrochart
+    - SylvainCorlay
