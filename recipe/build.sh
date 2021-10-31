@@ -4,6 +4,7 @@ set -ex
 export CFLAGS="$CFLAGS -std=c99 -fPIC"
 
 if [ "${mpi}" == "openmpi" ]; then
+    export OPAL_PREFIX=$PREFIX
     export OMPI_MCA_plm=isolated
     export OMPI_MCA_btl_vader_single_copy_mechanism=none
     export OMPI_MCA_rmaps_base_oversubscribe=yes
@@ -14,6 +15,9 @@ if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" ]]; then
 else
     WITH_TESTS=OFF
 fi
+
+# workaround until https://github.com/conda-forge/clang-compiler-activation-feedstock/pull/70 is merged
+CMAKE_ARGS="${CMAKE_ARGS} -DCMAKE_PROGRAM_PATH=${BUILD_PREFIX}/bin;$PREFIX/bin"
 
 WORK=$PWD
 # run full build & install twice, once for static, once for shared
