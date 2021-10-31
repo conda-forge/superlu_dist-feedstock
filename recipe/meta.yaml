@@ -1,4 +1,4 @@
-{% set version = "6.3.1" %}
+{% set version = "6.4.0" %}
 
 package:
   name: superlu_dist
@@ -6,11 +6,11 @@ package:
 
 source:
   fn: superlu-{{ version }}.tar.gz
-  url: https://portal.nersc.gov/project/sparse/superlu/superlu_dist_{{ version }}.tar.gz
-  sha256: 713b1993fc5426229c5ccd4be499defb1b040ff9209adb7fe97bbec880dcbc52
+  url: https://github.com/xiaoyeli/superlu_dist/archive/refs/tags/v{{ version }}.tar.gz
+  sha256: cb9c0b2ba4c28e5ed5817718ba19ae1dd63ccd30bc44c8b8252b54f5f04a44cc
 
 build:
-  number: 1
+  number: 0
   skip: True  # [win]
 
 requirements:
