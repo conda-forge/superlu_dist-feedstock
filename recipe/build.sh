@@ -22,7 +22,7 @@ CMAKE_ARGS="${CMAKE_ARGS} -DCMAKE_PROGRAM_PATH=${BUILD_PREFIX}/bin;$PREFIX/bin"
 WORK=$PWD
 # run full build & install twice, once for static, once for shared
 # because it's the cmake way
-for shared in OFF ON; do
+for shared in ON OFF; do
     pushd "$WORK"
     mkdir build_$shared
     cd build_$shared
