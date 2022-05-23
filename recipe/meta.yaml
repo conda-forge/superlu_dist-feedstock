@@ -1,4 +1,4 @@
-{% set version = "7.2.0" %}
+{% set version = "8.0.0" %}
 
 package:
   name: superlu_dist
@@ -7,7 +7,7 @@ package:
 source:
   fn: superlu-{{ version }}.tar.gz
   url: https://github.com/xiaoyeli/superlu_dist/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: d4528cd64921807180514ae86914e11ce22ab289df8c4631b7d96827add5783a
+  sha256: ad0682ef425716d5880c7f7c905a8701428b09c82ceaf87b3c386ff4d70efb05
 
 build:
   number: 0
