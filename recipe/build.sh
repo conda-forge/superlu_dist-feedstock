@@ -35,6 +35,7 @@ for shared in OFF ON; do
         -DCMAKE_C_COMPILER="${CC}" \
         -DCMAKE_CXX_COMPILER="${CXX}" \
         -DCMAKE_Fortran_COMPILER="${FC}" \
+        -DCMAKE_INSTALL_INCLUDEDIR=include/superlu-dist \
         -DCMAKE_BUILD_TYPE=RELEASE \
         -DTPL_PARMETIS_INCLUDE_DIRS="${PREFIX}/include" \
         -DTPL_PARMETIS_LIBRARIES="${PREFIX}/lib/libparmetis${SHLIB_EXT};${PREFIX}/lib/libmetis${SHLIB_EXT}" \
