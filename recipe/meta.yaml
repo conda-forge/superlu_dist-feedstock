@@ -42,6 +42,9 @@ test:
   commands:
     - test -f ${PREFIX}/lib/libsuperlu_dist.a
     - test -f ${PREFIX}/lib/libsuperlu_dist${SHLIB_EXT}
+    - test -f ${PREFIX}/include/superlu-dist/superlu_defs.h
+    - test ! -f ${PREFIX}/include/colamd.h
+    - test ! -f ${PREFIX}/include/supermatrix.h
 
 about:
   home: https://portal.nersc.gov/project/sparse/superlu/
