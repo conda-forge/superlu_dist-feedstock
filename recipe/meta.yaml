@@ -7,7 +7,7 @@ package:
 source:
   fn: superlu-{{ version }}.tar.gz
   url: https://github.com/xiaoyeli/superlu_dist/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: d4528cd64921807180514ae86914e11ce22ab289df8c4631b7d96827add5783a
+  sha256: 20b60bd8a3d88031c9ce6511ae9700b7a8dcf12e2fd704e74b1af762b3468b8c
 
 build:
   number: 1
