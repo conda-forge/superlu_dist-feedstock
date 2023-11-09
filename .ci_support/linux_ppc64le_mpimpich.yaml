@@ -1,7 +1,7 @@
 c_compiler:
 - gcc
 c_compiler_version:
-- '9'
+- '12'
 cdt_name:
 - cos7
 channel_sources:
@@ -11,24 +11,25 @@ channel_targets:
 cxx_compiler:
 - gxx
 cxx_compiler_version:
-- '9'
+- '12'
 docker_image:
-- quay.io/condaforge/linux-anvil-ppc64le
+- quay.io/condaforge/linux-anvil-cos7-x86_64
 fortran_compiler:
 - gfortran
 fortran_compiler_version:
-- '9'
+- '12'
 libblas:
-- 3.8 *netlib
+- 3.9 *netlib
 liblapack:
-- 3.8 *netlib
+- 3.9 *netlib
 metis:
-- '5.1'
+- 5.1.1
 mpi:
 - mpich
-pin_run_as_build:
-  metis:
-    max_pin: x.x
+mpich:
+- '4'
+openmpi:
+- '4'
 target_platform:
 - linux-ppc64le
 zip_keys:
