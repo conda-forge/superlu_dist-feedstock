@@ -10,7 +10,7 @@ source:
   sha256: d4528cd64921807180514ae86914e11ce22ab289df8c4631b7d96827add5783a
 
 build:
-  number: 0
+  number: 1
   skip: true  # [win]
   run_exports:
     - {{ pin_subpackage('superlu_dist', max_pin='x') }}
