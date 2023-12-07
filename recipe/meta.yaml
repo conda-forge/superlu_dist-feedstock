@@ -23,7 +23,7 @@ requirements:
     - llvm-openmp  # [osx]
     - libgomp      # [linux]
     - cmake
-    - ninja
+    - make
     - {{ mpi }}  # [build_platform != target_platform and mpi == "openmpi"]
   host:
     - {{ mpi }}
@@ -40,7 +40,7 @@ requirements:
 
 test:
   commands:
-    - test -f ${PREFIX}/lib/libsuperlu_dist.a
+    - test ! -f ${PREFIX}/lib/libsuperlu_dist.a
     - test -f ${PREFIX}/lib/libsuperlu_dist${SHLIB_EXT}
     - test -f ${PREFIX}/include/superlu-dist/superlu_defs.h
     - test ! -f ${PREFIX}/include/colamd.h
