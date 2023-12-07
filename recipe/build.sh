@@ -20,6 +20,14 @@ fi
 # workaround until https://github.com/conda-forge/clang-compiler-activation-feedstock/pull/70 is merged
 CMAKE_ARGS="${CMAKE_ARGS} -DCMAKE_PROGRAM_PATH=${BUILD_PREFIX}/bin;$PREFIX/bin"
 
+if [[ $target_platform =~ osx* && $mpi = "mpich" ]]; then
+  # figure out how to remove -fallow-argument-mismatch
+  # which is passed to C, but is fortran-only
+  ENABLE_FORTRAN=OFF
+else
+  ENABLE_FORTRAN=ON
+fi
+
 WORK=$PWD
 
 mkdir build
@@ -42,7 +50,7 @@ cmake .. \
     -DTPL_ENABLE_LAPACKLIB=ON \
     -DTPL_LAPACK_LIBRARIES="${PREFIX}/lib/liblapack${SHLIB_EXT};${PREFIX}/lib/libblas${SHLIB_EXT}" \
     -DTPL_ENABLE_INTERNAL_BLASLIB=OFF \
-    -DXSDK_ENABLE_Fortran=ON \
+    -DXSDK_ENABLE_Fortran=${ENABLE_FORTRAN} \
     -Denable_tests=${WITH_TESTS} \
     -Denable_doc=OFF \
     -DBUILD_STATIC_LIBS=OFF \
