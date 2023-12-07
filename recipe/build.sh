@@ -48,7 +48,7 @@ cmake .. \
     -DBUILD_STATIC_LIBS=OFF \
     -DBUILD_SHARED_LIBS=ON
 
-cmake --build . --verbose
+cmake --build .
 
 # ctest seems to have weird PATH assumptions
 export PATH=$PWD/EXAMPLE:$PWD/TEST:$PATH
