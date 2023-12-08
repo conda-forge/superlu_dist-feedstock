@@ -3,7 +3,7 @@ MACOSX_DEPLOYMENT_TARGET:
 c_compiler:
 - clang
 c_compiler_version:
-- '11'
+- '16'
 channel_sources:
 - conda-forge
 channel_targets:
@@ -11,26 +11,27 @@ channel_targets:
 cxx_compiler:
 - clangxx
 cxx_compiler_version:
-- '11'
+- '16'
 fortran_compiler:
 - gfortran
 fortran_compiler_version:
-- '11'
+- '12'
 libblas:
 - 3.9 *netlib
 liblapack:
 - 3.9 *netlib
 llvm_openmp:
-- '11'
+- '16'
 macos_machine:
 - arm64-apple-darwin20.0.0
 metis:
-- '5.1'
+- 5.1.1
 mpi:
 - openmpi
-pin_run_as_build:
-  metis:
-    max_pin: x.x
+mpich:
+- '4'
+openmpi:
+- '4'
 target_platform:
 - osx-arm64
 zip_keys:

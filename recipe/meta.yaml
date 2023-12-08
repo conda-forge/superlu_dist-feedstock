@@ -1,4 +1,4 @@
-{% set version = "7.2.0" %}
+{% set version = "8.1.2" %}
 
 package:
   name: superlu_dist
@@ -7,7 +7,7 @@ package:
 source:
   fn: superlu-{{ version }}.tar.gz
   url: https://github.com/xiaoyeli/superlu_dist/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: d4528cd64921807180514ae86914e11ce22ab289df8c4631b7d96827add5783a
+  sha256: 7b16c442bb01ea8b298c0aab9a2584aa4615d09786aac968cb2f3118c058206b
 
 build:
   number: 0
@@ -23,7 +23,7 @@ requirements:
     - llvm-openmp  # [osx]
     - libgomp      # [linux]
     - cmake
-    - ninja
+    - make
     - {{ mpi }}  # [build_platform != target_platform and mpi == "openmpi"]
   host:
     - {{ mpi }}
@@ -40,8 +40,11 @@ requirements:
 
 test:
   commands:
-    - test -f ${PREFIX}/lib/libsuperlu_dist.a
+    - test ! -f ${PREFIX}/lib/libsuperlu_dist.a
     - test -f ${PREFIX}/lib/libsuperlu_dist${SHLIB_EXT}
+    - test -f ${PREFIX}/include/superlu-dist/superlu_defs.h
+    - test ! -f ${PREFIX}/include/colamd.h
+    - test ! -f ${PREFIX}/include/supermatrix.h
 
 about:
   home: https://portal.nersc.gov/project/sparse/superlu/
