@@ -65,7 +65,7 @@ export OMP_NUM_THREADS=1
 export KMP_NUM_THREADS=${OMP_NUM_THREADS}
 export MKL_NUM_THREADS=${OMP_NUM_THREADS}
 export CTEST_REGEX="-R (pdtest_1x1|pdtest_1x2|pdtest_2x1|pddrive)"
-if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" ]]; then
+if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" || "${CROSSCOMPILING_EMULATOR}" != "" ]]; then
     ctest ${CTEST_REGEX}
 fi
 
