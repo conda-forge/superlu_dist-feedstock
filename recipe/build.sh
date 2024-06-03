@@ -5,10 +5,10 @@ export CFLAGS="$CFLAGS -std=c99 -fPIC"
 
 if [ "${mpi}" == "openmpi" ]; then
     export OPAL_PREFIX=$PREFIX
-    export OMPI_MCA_plm=isolated
-    export OMPI_MCA_btl=vader,self
-    export OMPI_MCA_btl_vader_single_copy_mechanism=none
-    export OMPI_MCA_rmaps_base_oversubscribe=yes
+    export OMPI_MCA_pml=ob1
+    export OMPI_MCA_btl=sm,self
+    export OMPI_MCA_plm_ssh_agent=false
+    export OMPI_MCA_rmaps_default_mapping_policy=:oversubscribe
 fi
 
 if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" ]]; then
