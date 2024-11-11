@@ -3,14 +3,6 @@
 set -ex
 export CFLAGS="$CFLAGS -std=c99 -fPIC"
 
-if [ "${mpi}" == "openmpi" ]; then
-    export OPAL_PREFIX=$PREFIX
-    export OMPI_MCA_pml=ob1
-    export OMPI_MCA_btl=sm,self
-    export OMPI_MCA_plm_ssh_agent=false
-    export OMPI_MCA_rmaps_default_mapping_policy=:oversubscribe
-fi
-
 if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" ]]; then
     WITH_TESTS=ON
 else
@@ -52,6 +44,8 @@ cmake .. \
     -DTPL_ENABLE_INTERNAL_BLASLIB=OFF \
     -DXSDK_ENABLE_Fortran=${ENABLE_FORTRAN} \
     -Denable_tests=${WITH_TESTS} \
+    -Denable_examples=OFF \
+    -Denable_python=OFF \
     -Denable_doc=OFF \
     -DBUILD_STATIC_LIBS=OFF \
     -DBUILD_SHARED_LIBS=ON
