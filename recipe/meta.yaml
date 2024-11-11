@@ -32,12 +32,6 @@ requirements:
     - parmetis
     - libblas
     - liblapack
-  run:
-    # metis and parmetis are missing a run_exports section
-    - metis
-    - parmetis
-    - {{ pin_compatible('metis', max_pin='x.x') }}
-    - {{ pin_compatible('parmetis', max_pin='x.x') }}
 
 test:
   commands:
