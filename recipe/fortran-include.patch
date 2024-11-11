@@ -1,0 +1,26 @@
+From 61a3ad553f9dfc87ee2ce33f5729310c74f22739 Mon Sep 17 00:00:00 2001
+From: Min RK <benjaminrk@gmail.com>
+Date: Mon, 11 Nov 2024 11:35:49 +0100
+Subject: [PATCH] copy .mod files directly to include directory
+
+don't preserve FORTRAN subdir
+---
+ FORTRAN/CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/FORTRAN/CMakeLists.txt b/FORTRAN/CMakeLists.txt
+index 472f57d7..8cbd3bf9 100644
+--- a/FORTRAN/CMakeLists.txt
++++ b/FORTRAN/CMakeLists.txt
+@@ -62,7 +62,7 @@ if (BUILD_STATIC_LIBS)
+   )
+ endif()
+ 
+-install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
++install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/
+   DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+   FILES_MATCHING PATTERN *.mod
+   )
+-- 
+2.45.0
+

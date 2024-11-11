@@ -1,4 +1,4 @@
-{% set version = "9.0.0" %}
+{% set version = "9.1.0" %}
 
 package:
   name: superlu_dist
@@ -7,10 +7,13 @@ package:
 source:
   fn: superlu-{{ version }}.tar.gz
   url: https://github.com/xiaoyeli/superlu_dist/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: aa43d33d4b1b0f5f7b5ad7685e9a6bc25088832c6c74d2ab8f75a2c9f4e9e955
+  sha256: 1cb2c6dc7e8231b2ec30c1266e55e440ffca9f55527771d8df28f900dd179f9d
+  patches:
+    - fortran-static.patch
+    - fortran-include.patch
 
 build:
-  number: 1
+  number: 0
   skip: true  # [win]
   run_exports:
     - {{ pin_subpackage('superlu_dist', max_pin='x') }}
@@ -32,20 +35,31 @@ requirements:
     - parmetis
     - libblas
     - liblapack
-  run:
-    # metis and parmetis are missing a run_exports section
-    - metis
-    - parmetis
-    - {{ pin_compatible('metis', max_pin='x.x') }}
-    - {{ pin_compatible('parmetis', max_pin='x.x') }}
 
 test:
+  source_files:
+    - EXAMPLE/
+    - FORTRAN/
+  requires:
+    - pkg-config
+    - {{ compiler('c') }}
+    - {{ compiler('fortran') }}
   commands:
+    - pkg-config --cflags --libs superlu_dist
     - test ! -f ${PREFIX}/lib/libsuperlu_dist.a
     - test -f ${PREFIX}/lib/libsuperlu_dist${SHLIB_EXT}
     - test -f ${PREFIX}/include/superlu-dist/superlu_defs.h
     - test ! -f ${PREFIX}/include/colamd.h
     - test ! -f ${PREFIX}/include/supermatrix.h
+    # fortran
+    - test ! -f ${PREFIX}/lib/libsuperlu_dist_fortran.a
+    - test -f ${PREFIX}/lib/libsuperlu_dist_fortran${SHLIB_EXT}
+    - test -f ${PREFIX}/include/superlu-dist/superlu_dist_config.fh
+    - test -f ${PREFIX}/include/superlu-dist/superlu_mod.mod
+    # examples, python
+    - test ! -d ${PREFIX}/lib/EXAMPLE
+    - test ! -f ${PREFIX}/lib/libsuperlu_dist_python.so
+    
 
 about:
   home: https://portal.nersc.gov/project/sparse/superlu/

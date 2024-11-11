@@ -3,14 +3,6 @@
 set -ex
 export CFLAGS="$CFLAGS -std=c99 -fPIC"
 
-if [ "${mpi}" == "openmpi" ]; then
-    export OPAL_PREFIX=$PREFIX
-    export OMPI_MCA_pml=ob1
-    export OMPI_MCA_btl=sm,self
-    export OMPI_MCA_plm_ssh_agent=false
-    export OMPI_MCA_rmaps_default_mapping_policy=:oversubscribe
-fi
-
 if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" ]]; then
     WITH_TESTS=ON
 else
@@ -19,14 +11,6 @@ fi
 
 # workaround until https://github.com/conda-forge/clang-compiler-activation-feedstock/pull/70 is merged
 CMAKE_ARGS="${CMAKE_ARGS} -DCMAKE_PROGRAM_PATH=${BUILD_PREFIX}/bin;$PREFIX/bin"
-
-if [[ $target_platform =~ osx* && $mpi = "mpich" ]]; then
-  # figure out how to remove -fallow-argument-mismatch
-  # which is passed to C, but is fortran-only
-  ENABLE_FORTRAN=OFF
-else
-  ENABLE_FORTRAN=ON
-fi
 
 WORK=$PWD
 
@@ -50,13 +34,15 @@ cmake .. \
     -DTPL_ENABLE_LAPACKLIB=ON \
     -DTPL_LAPACK_LIBRARIES="${PREFIX}/lib/liblapack${SHLIB_EXT};${PREFIX}/lib/libblas${SHLIB_EXT}" \
     -DTPL_ENABLE_INTERNAL_BLASLIB=OFF \
-    -DXSDK_ENABLE_Fortran=${ENABLE_FORTRAN} \
+    -DXSDK_ENABLE_Fortran=ON \
     -Denable_tests=${WITH_TESTS} \
+    -Denable_examples=OFF \
+    -Denable_python=OFF \
     -Denable_doc=OFF \
     -DBUILD_STATIC_LIBS=OFF \
     -DBUILD_SHARED_LIBS=ON
 
-cmake --build .
+cmake --build . --parallel ${CPU_COUNT:-1}
 
 # ctest seems to have weird PATH assumptions
 export PATH=$PWD/EXAMPLE:$PWD/TEST:$PATH
