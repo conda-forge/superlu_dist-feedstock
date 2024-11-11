@@ -8,6 +8,9 @@ source:
   fn: superlu-{{ version }}.tar.gz
   url: https://github.com/xiaoyeli/superlu_dist/archive/refs/tags/v{{ version }}.tar.gz
   sha256: 1cb2c6dc7e8231b2ec30c1266e55e440ffca9f55527771d8df28f900dd179f9d
+  patches:
+    - fortran-static.patch
+    - fortran-include.patch
 
 build:
   number: 0
@@ -34,12 +37,29 @@ requirements:
     - liblapack
 
 test:
+  source_files:
+    - EXAMPLE/
+    - FORTRAN/
+  requires:
+    - pkg-config
+    - {{ compiler('c') }}
+    - {{ compiler('fortran') }}
   commands:
+    - pkg-config --cflags --libs superlu_dist
     - test ! -f ${PREFIX}/lib/libsuperlu_dist.a
     - test -f ${PREFIX}/lib/libsuperlu_dist${SHLIB_EXT}
     - test -f ${PREFIX}/include/superlu-dist/superlu_defs.h
     - test ! -f ${PREFIX}/include/colamd.h
     - test ! -f ${PREFIX}/include/supermatrix.h
+    # fortran
+    - test ! -f ${PREFIX}/lib/libsuperlu_dist_fortran.a
+    - test -f ${PREFIX}/lib/libsuperlu_dist_fortran${SHLIB_EXT}
+    - test -f ${PREFIX}/include/superlu-dist/superlu_dist_config.fh
+    - test -f ${PREFIX}/include/superlu-dist/superlu_mod.mod
+    # examples, python
+    - test ! -d ${PREFIX}/lib/EXAMPLE
+    - test ! -f ${PREFIX}/lib/libsuperlu_dist_python.so
+    
 
 about:
   home: https://portal.nersc.gov/project/sparse/superlu/
