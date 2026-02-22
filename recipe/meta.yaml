@@ -13,7 +13,7 @@ source:
     - fortran-include.patch
 
 build:
-  number: 0
+  number: 1
   skip: true  # [win]
   run_exports:
     - {{ pin_subpackage('superlu_dist', max_pin='x') }}
