@@ -1,0 +1,96 @@
+schema_version: 1
+
+context:
+  version: "9.1.0"
+
+package:
+  name: superlu_dist
+  version: ${{ version }}
+
+source:
+  url: https://github.com/xiaoyeli/superlu_dist/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 1cb2c6dc7e8231b2ec30c1266e55e440ffca9f55527771d8df28f900dd179f9d
+  patches:
+    - fortran-static.patch
+    - fortran-include.patch
+
+build:
+  number: 1
+  skip: win
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+    - ${{ compiler('cxx') }}
+    - ${{ compiler('fortran') }}
+    - if: osx
+      then:
+        - llvm-openmp
+    - if: linux
+      then:
+        - libgomp
+    - cmake
+    - make
+    - if: build_platform != target_platform and mpi == "openmpi"
+      then:
+        - ${{ mpi }}
+  host:
+    - ${{ mpi }}
+    - metis
+    - parmetis
+    - libblas
+    - liblapack
+  run_exports:
+    - ${{ pin_subpackage('superlu_dist', upper_bound='x') }}
+
+tests:
+  - package_contents:
+      files:
+        not_exists:
+          - lib/libsuperlu_dist.a
+          - lib/libsuperlu_dist_fortran.a
+          - lib/EXAMPLE
+      lib:
+        exists:
+          - superlu_dist
+          - superlu_dist_fortran
+        not_exists:
+          - superlu_dist_python
+
+      include:
+        exists:
+          - superlu-dist/superlu_defs.h
+          - superlu-dist/superlu_dist_config.fh
+          - superlu-dist/superlu_mod.mod
+        not_exists: 
+          - colamd.h
+          - supermatrix.h
+  - files:
+      source:
+        - EXAMPLE/
+        - FORTRAN/
+    requirements:
+      run:
+        - pkg-config
+        - ${{ compiler('c') }}
+        - ${{ compiler('fortran') }}
+    script:
+      - pkg-config --cflags --libs superlu_dist
+
+about:
+  license: BSD-3-Clause
+  license_file: License.txt
+  summary: |
+    Supernodal LU, solvers for large, sparse, nonsymmetric systems of linear
+    equations. SuperLU_DIST is a parallel extension to the serial SuperLU library.
+  homepage: https://portal.nersc.gov/project/sparse/superlu/
+  repository: https://github.com/xiaoyeli/superlu_dist/
+  documentation: https://portal.nersc.gov/project/sparse/superlu/superlu_dist_code_html/index.html
+
+extra:
+  recipe-maintainers:
+    - awvwgk
+    - minrk
+    - davidbrochart
+    - SylvainCorlay
