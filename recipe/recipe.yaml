@@ -1,7 +1,7 @@
 schema_version: 1
 
 context:
-  version: "9.1.0"
+  version: "9.2.1"
 
 package:
   name: superlu_dist
@@ -9,13 +9,13 @@ package:
 
 source:
   url: https://github.com/xiaoyeli/superlu_dist/archive/refs/tags/v${{ version }}.tar.gz
-  sha256: 1cb2c6dc7e8231b2ec30c1266e55e440ffca9f55527771d8df28f900dd179f9d
+  sha256: c80a1c2edaaa451ee9a54e005e5f3f56dc55cabe2b0a8d7acf5a1447a648157a
   patches:
     - fortran-static.patch
     - fortran-include.patch
 
 build:
-  number: 1
+  number: 0
   skip: win
 
 requirements:
@@ -63,7 +63,7 @@ tests:
           - superlu-dist/superlu_defs.h
           - superlu-dist/superlu_dist_config.fh
           - superlu-dist/superlu_mod.mod
-        not_exists: 
+        not_exists:
           - colamd.h
           - supermatrix.h
   - files:
