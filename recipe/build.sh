@@ -46,6 +46,11 @@ cmake --build . --parallel ${CPU_COUNT:-1}
 
 # ctest seems to have weird PATH assumptions
 export PATH=$PWD/EXAMPLE:$PWD/TEST:$PATH
+
+# debug mpich
+export MPIR_CVAR_DEBUG_SUMMARY=1 
+export FI_PROVIDER=tcp
+
 # avoid heavy oversubscription of resources: already 1-2 MPI ranks (processes)
 export OMP_NUM_THREADS=1
 export KMP_NUM_THREADS=${OMP_NUM_THREADS}
