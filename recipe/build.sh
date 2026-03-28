@@ -17,7 +17,6 @@ WORK=$PWD
 mkdir build
 cd build
 
-# build & install once for static
 cmake .. \
     ${CMAKE_ARGS} \
     -DCMAKE_C_FLAGS="${CFLAGS}" \
