@@ -24,7 +24,9 @@ requirements:
     - ${{ compiler('c') }}
     - ${{ stdlib("c") }}
     - ${{ compiler('cxx') }}
-    - ${{ compiler('fortran') }}
+    - if: not win
+      then:
+        - ${{ compiler('fortran') }}
     - if: osx
       then:
         - llvm-openmp
