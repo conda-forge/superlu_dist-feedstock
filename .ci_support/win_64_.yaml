@@ -1,0 +1,28 @@
+c_compiler:
+- vs2022
+c_stdlib:
+- vs
+channel_sources:
+- conda-forge
+channel_targets:
+- conda-forge main
+cxx_compiler:
+- vs2022
+fortran_compiler:
+- flang
+fortran_compiler_version:
+- '5'
+impi_devel:
+- 2021.16.0
+libblas:
+- 3.9.* *netlib
+liblapack:
+- 3.9.* *netlib
+mpi:
+- impi
+mpich:
+- '5'
+openmpi:
+- '5'
+target_platform:
+- win-64
