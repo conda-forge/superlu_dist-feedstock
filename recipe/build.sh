@@ -19,6 +19,7 @@ cd build
 
 cmake .. \
     ${CMAKE_ARGS} \
+    -G Ninja \
     -DCMAKE_C_FLAGS="${CFLAGS}" \
     -DCMAKE_C_COMPILER="${CC}" \
     -DCMAKE_CXX_COMPILER="${CXX}" \

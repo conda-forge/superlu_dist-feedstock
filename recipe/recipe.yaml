@@ -17,8 +17,7 @@ source:
     - rowperm_default_NOROWPERM_not_MC64.patch
 
 build:
-  number: 2
-  skip: win
+  number: 3
 
 requirements:
   build:
@@ -33,14 +32,16 @@ requirements:
       then:
         - libgomp
     - cmake
-    - make
+    - ninja
     - if: build_platform != target_platform and mpi == "openmpi"
       then:
         - ${{ mpi }}
   host:
-    - ${{ mpi }}
-    - metis
-    - parmetis
+    - ${{ mpi | replace("impi", "impi-devel") }}
+    - if: not win
+      then:
+        - metis
+        - parmetis
     - libblas
     - liblapack
   run_exports:
