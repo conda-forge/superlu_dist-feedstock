@@ -33,6 +33,9 @@ requirements:
     - if: linux
       then:
         - libgomp
+    - if: win
+      then:
+        - cmd
     - cmake
     - ninja
     - if: build_platform != target_platform and mpi == "openmpi"
