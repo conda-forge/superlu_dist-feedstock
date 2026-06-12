@@ -26,6 +26,6 @@ cmake --build . --parallel %CPU_COUNT%
 set OMP_NUM_THREADS=1
 set KMP_NUM_THREADS=1
 set MKL_NUM_THREADS=1
-ctest --output-on-failure -R (pdtest_1x1|pdtest_1x2|pdtest_2x1|pddrive)
+ctest --output-on-failure -R "(pdtest_1x1|pdtest_1x2|pdtest_2x1|pddrive)"
 
 cmake --install .
