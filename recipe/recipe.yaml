@@ -1,7 +1,7 @@
 schema_version: 1
 
 context:
-  version: "9.2.1"
+  version: "9.3.2"
 
 package:
   name: superlu_dist
@@ -9,7 +9,7 @@ package:
 
 source:
   url: https://github.com/xiaoyeli/superlu_dist/archive/refs/tags/v${{ version }}.tar.gz
-  sha256: c80a1c2edaaa451ee9a54e005e5f3f56dc55cabe2b0a8d7acf5a1447a648157a
+  sha256: 6e9d641bce30a0087c2275e281e6e856f202b61c86a2e9a09f328d31c8e7ee36
   patches:
     # patches from debian to remove mc64,
     # which has a non-free license that doesn't permit redistribution
@@ -17,7 +17,7 @@ source:
     - rowperm_default_NOROWPERM_not_MC64.patch
 
 build:
-  number: 2
+  number: 0
   skip: win
 
 requirements:
@@ -65,7 +65,7 @@ tests:
           - superlu-dist/superlu_defs.h
           - superlu-dist/superlu_dist_config.fh
           - superlu-dist/superlu_mod.mod
-        not_exists: 
+        not_exists:
           - colamd.h
           - supermatrix.h
   - files:
